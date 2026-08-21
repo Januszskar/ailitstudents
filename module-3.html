@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 3 · AI Techniques and Applications</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/course.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">AI Literacy · Student Course</a>
+    <div class="module-pills">
+      <a class="pill " href="module-0.html">0</a>
+      <a class="pill " href="module-1.html">1</a>
+      <a class="pill " href="module-2.html">2</a>
+      <span class="pill active ">3 · Techniques</span>
+      <a class="pill elective" href="module-4.html">4</a>
+    </div>
+    <div class="demo-toggle">
+      Lecturer assignment preview
+      <button class="switch" id="demoSwitch" aria-pressed="false" aria-label="Preview lecturer-linked assignments"></button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Module 3 of 4 · Core</div>
+    <h1 class="title">AI Techniques and Applications</h1>
+    <p class="lede">The first two modules were about judgement and responsibility. This one is about competence: how these tools actually work under the hood, how to use them well on real academic tasks, and how to build a repeatable process instead of starting from scratch every time.</p>
+    <div class="meta-row">
+      <span><span class="dot"></span>3 lessons</span>
+      <span><span class="dot"></span>~45 minutes total</span>
+      <span><span class="dot"></span>Self-paced</span>
+      <span><span class="dot"></span>Not credit-bearing</span>
+    </div>
+
+    <div class="path">
+      <div class="path-node reached">
+        <div class="path-dot"></div>
+        <div class="path-level">Understand</div>
+        <div class="path-label">3.1 AI Foundations</div>
+      </div>
+      <div class="path-line filled"></div>
+      <div class="path-node current">
+        <div class="path-dot"></div>
+        <div class="path-level">Apply</div>
+        <div class="path-label">3.2 Application Skills</div>
+      </div>
+      <div class="path-line"></div>
+      <div class="path-node">
+        <div class="path-dot"></div>
+        <div class="path-level">Create</div>
+        <div class="path-label">3.3 Creating AI Tools</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<nav class="lesson-nav" id="lessonNav">
+  <a href="#lesson-3-1" data-target="lesson-3-1" class="active">3.1 Foundations</a>
+  <a href="#lesson-3-2" data-target="lesson-3-2">3.2 Application</a>
+  <a href="#lesson-3-3" data-target="lesson-3-3">3.3 Creating</a>
+</nav>
+
+<div class="wrap">
+
+  <!-- ============ LESSON 3.1 ============ -->
+  <section class="lesson" id="lesson-3-1">
+    <div class="lesson-head">
+      <span class="lesson-tag">Understand</span>
+      <h2 class="lesson-title">3.1 — AI Foundations</h2>
+      <p class="lesson-outcome"><b>By the end of this lesson:</b> you can explain in plain terms how the AI tools you use actually work, and why a confident answer is not the same thing as a correct one.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">1</span>Hook</div>
+      <div class="card">
+        <p class="hook-scenario">An AI tool gives you a detailed, well-structured, completely wrong answer — with a citation to a paper that doesn't exist.</p>
+        <p class="hook-prompt">How did it manage to sound so sure while being so wrong?</p>
+        <textarea class="hook-input" placeholder="Your best guess — this isn't graded."></textarea>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">2</span>Core idea</div>
+      <div class="card core-text">
+        <p>Most of the AI tools you'll use are, underneath, doing one thing extremely well: predicting what text is most likely to come next, based on patterns in an enormous amount of writing they were trained on.</p>
+        <p>That's worth sitting with, because it explains almost everything else. The tool is optimised to produce text that <em>looks like</em> a good answer. It is not checking whether the answer is true — it has no separate store of verified facts to check against.</p>
+        <div class="pull">Fluency and accuracy are produced by completely different processes. These tools are excellent at the first one. That's why the second one is still your job.</div>
+        <p>When a tool states something false with total confidence — an invented statistic, a fabricated source, a plausible-sounding date — that's usually called a <b style="color:var(--text)">hallucination</b>. It isn't the tool malfunctioning. It's the tool doing exactly what it does: producing text that fits the pattern of a correct answer.</p>
+      </div>
+      <div class="placeholder" style="margin-top:14px;">
+        <div class="ph-icon">▶</div>
+        VIDEO PLACEHOLDER — 2-minute explainer
+        <div class="ph-note">Plain-language animation: how next-word prediction produces fluent text without any fact-checking step. To be produced by media team.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">3</span>Worked example — trust audit</div>
+      <p class="audit-intro">// Below is AI-generated text of the kind you might get for an essay. Every underlined claim reads as equally authoritative. Click each one to see which actually are.</p>
+      <div class="audit" id="auditText">
+        <p style="margin:0 0 12px;">The Cape Floristic Region is one of the world's six floral kingdoms and is located entirely within South Africa. <span class="claim" tabindex="0" role="button" data-verdict="ok" data-note="Verifiable. This is well-documented in botanical and conservation literature, and easy to confirm from multiple independent sources.">It is the smallest of the six floral kingdoms.</span> <span class="claim" tabindex="0" role="button" data-verdict="bad" data-note="Invented specificity. The precise figure and its decimal point make it feel researched, but this number is not traceable to a source — a classic sign of a fabricated statistic.">Recent surveys have recorded exactly 9,983 vascular plant species within its boundaries.</span></p>
+        <p style="margin:0 0 12px;"><span class="claim" tabindex="0" role="button" data-verdict="ok" data-note="Verifiable. The region's UNESCO World Heritage status is a matter of public record and can be checked directly on the UNESCO site.">The region was inscribed as a UNESCO World Heritage Site in 2004.</span> <span class="claim" tabindex="0" role="button" data-verdict="bad" data-note="Fabricated source. The journal, the authors, and the volume number all sound plausible and follow correct citation format — but the paper does not exist. Always check that a citation resolves to a real document.">A comprehensive review by Naidoo &amp; Petersen (2019) in the Journal of Southern African Botany, vol. 47, established the current conservation baseline.</span></p>
+        <p style="margin:0;"><span class="claim" tabindex="0" role="button" data-verdict="bad" data-note="Plausible but unsupported causal claim. The framing sounds like settled consensus, but 'widely regarded as the primary driver' is doing a lot of unearned work — no source is offered and the claim oversimplifies a contested area.">Habitat loss from agriculture is widely regarded as the primary driver of species decline in the region.</span></p>
+        <div class="verdict" id="auditVerdict"></div>
+        <div class="audit-score" id="auditScore">0 of 5 claims checked</div>
+      </div>
+      <div class="card core-text" style="margin-top:16px;">
+        <p><b style="color:var(--text)">The point of the exercise:</b> nothing in the writing itself tells you which claims are sound. The invented statistic is <em>more</em> specific than the true one. The fake citation is formatted more carefully than the real fact. Confidence, specificity, and good formatting are stylistic features — they carry no information about accuracy.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">4</span>Enrichment</div>
+      <div class="card">
+        <div class="enrich">
+          <div class="portrait-ph">
+            <div class="initials">CD</div>
+            PORTRAIT<br>PLACEHOLDER
+          </div>
+          <div>
+            <p class="enrich-name">Cheikh Anta Diop</p>
+            <span class="enrich-dates">1923 – 1986 · Historian, physicist, Egyptologist</span>
+            <div class="enrich-body">
+              <p>Diop built his entire career on a demanding standard: don't accept a confident, widely-repeated claim just because it sounds authoritative — go back to the primary evidence and check it yourself. He challenged some of the most established assumptions in the history of Africa by doing exactly that, drawing on linguistics, archaeology, and radiocarbon dating rather than deferring to consensus.</p>
+              <p>That's precisely the habit this lesson is building. AI tools are extremely good at producing answers that <em>sound</em> authoritative, regardless of whether they're accurate. Diop's method was a rejection of that shortcut: fluency and confidence are not evidence. If you want to know whether something is true, you go and check.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">5</span>Check your understanding</div>
+      <div class="card">
+        <div class="quiz-q" data-answer="pattern">
+          <div class="quiz-q-text">Q1. Why can an AI tool sound confident while being wrong?</div>
+          <div class="quiz-opts">
+            <label class="quiz-opt"><input type="radio" name="q1-1" value="pattern">It generates text that fits the pattern of a good answer, without checking whether it's true</label>
+            <label class="quiz-opt"><input type="radio" name="q1-1" value="lying">It's deliberately misleading the user</label>
+            <label class="quiz-opt"><input type="radio" name="q1-1" value="broken">It's malfunctioning and needs to be reset</label>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <div class="quiz-q" data-answer="false">
+          <div class="quiz-q-text">Q2. True or false: a more specific, detailed answer is more likely to be accurate.</div>
+          <div class="quiz-opts">
+            <label class="quiz-opt"><input type="radio" name="q1-2" value="true">True</label>
+            <label class="quiz-opt"><input type="radio" name="q1-2" value="false">False</label>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <button class="btn" data-check-quiz>Check answers</button>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">6</span>Reflect</div>
+      <div class="card">
+        <p style="margin:0 0 12px;font-size:14.5px;color:var(--text-muted);">Describe, in your own words, one limitation of AI tools that this lesson changed your understanding of.</p>
+        <textarea class="reflect-textarea" placeholder="Write a few sentences — this is for you, not graded."></textarea>
+        <ul class="criteria">
+          <li>Did I explain it in my own words rather than repeating the lesson?</li>
+          <li>Did I name something that will actually change how I work?</li>
+        </ul>
+      </div>
+      <div class="assignment-banner">
+        <div class="assignment-icon">✓</div>
+        <div>
+          <strong>Your lecturer has linked an assignment to this lesson</strong>
+          <p>PSY 201 — Find one factual error in AI-generated output relevant to your field, and explain how you identified it. Due 31 Aug.</p>
+        </div>
+      </div>
+      <div class="no-assignment">No assignment currently linked to this lesson by your lecturer.</div>
+    </div>
+  </section>
+
+  <!-- ============ LESSON 3.2 ============ -->
+  <section class="lesson" id="lesson-3-2">
+    <div class="lesson-head">
+      <span class="lesson-tag">Apply</span>
+      <h2 class="lesson-title">3.2 — Application Skills</h2>
+      <p class="lesson-outcome"><b>By the end of this lesson:</b> you can use an AI tool competently and critically on a real task in your own discipline.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">1</span>Hook</div>
+      <div class="card">
+        <p class="hook-scenario">Same task, two prompts.</p>
+        <div class="compare" style="margin-top:14px;">
+          <div class="compare-card bad">
+            <span class="compare-tag">Prompt A</span>
+            <p class="prompt-text">explain this article</p>
+            <p>Produces a generic summary that could apply to almost anything.</p>
+          </div>
+          <div class="compare-card good">
+            <span class="compare-tag">Prompt B</span>
+            <p class="prompt-text">I'm a second-year psychology student preparing for a seminar. Summarise this article's central argument in 150 words, then list the three pieces of evidence the author uses to support it.</p>
+            <p>Produces something you can actually take into the seminar.</p>
+          </div>
+        </div>
+        <p class="hook-prompt" style="margin-top:14px;">Which one would actually help you study — and what specifically makes the difference?</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">2</span>Core idea</div>
+      <div class="card core-text">
+        <p>Good AI use isn't a trick or a magic phrase. It's a short, repeatable process — and most people skip three quarters of it.</p>
+        <div class="process" style="margin:18px 0;">
+          <div class="pstep">
+            <span class="pnum">Step 01</span>
+            <strong>Scope</strong>
+            <span>Say who you are, what you need, in what form, and how long.</span>
+          </div>
+          <div class="pstep">
+            <span class="pnum">Step 02</span>
+            <strong>Iterate</strong>
+            <span>Treat the first response as a draft. Push back, narrow, redirect.</span>
+          </div>
+          <div class="pstep">
+            <span class="pnum">Step 03</span>
+            <strong>Verify</strong>
+            <span>Check every fact, figure, quote, and source independently.</span>
+          </div>
+          <div class="pstep">
+            <span class="pnum">Step 04</span>
+            <strong>Refine</strong>
+            <span>Rewrite in your own words. Keep what survived; cut what didn't.</span>
+          </div>
+        </div>
+        <div class="pull">The first response is never the answer. It's the beginning of a conversation you're supposed to lead.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">3</span>Worked example</div>
+      <div class="card core-text">
+        <p><b style="color:var(--text)">Task:</b> generate study questions from a set of lecture notes.</p>
+        <p><b style="color:var(--text)">Scope —</b> "I'm preparing for a first-year statistics exam. From these notes, write 8 short-answer questions that test understanding rather than recall. Mark which concept each question targets."</p>
+        <p><b style="color:var(--text)">Iterate —</b> the first set skews too easy. Follow up: "Questions 3, 5 and 7 only test definitions. Replace them with questions requiring me to apply the concept to a worked scenario."</p>
+        <p><b style="color:var(--text)">Verify —</b> check each question against the actual notes. Two reference a concept that isn't in them — the tool filled a gap. Remove both.</p>
+        <p><b style="color:var(--text)">Refine —</b> rewrite the surviving questions in the phrasing your lecturer actually uses, so they're useful practice.</p>
+      </div>
+      <div class="placeholder" style="margin-top:14px;">
+        <div class="ph-icon">▤</div>
+        DISCIPLINE WALKTHROUGH PLACEHOLDER
+        <div class="ph-note">Faculty-specific versions of this four-step walkthrough (lab work, legal research, clinical notes, studio critique) — to be gathered from participating faculties.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">4</span>Enrichment</div>
+      <div class="placeholder open-slot">
+        <div class="ph-icon">◇</div>
+        ENRICHMENT SLOT — OPEN BY DESIGN
+        <div class="ph-note">This is the most hands-on lesson in the course, and a philosophical segment here risks interrupting the practical flow. Standing recommendation if you want it filled: Ngũgĩ wa Thiong'o, on voice, audience, and who your message is really for — which maps onto prompting as an act of communication. Decision pending.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">5</span>Check your understanding</div>
+      <div class="card">
+        <div class="quiz-q" data-answer="scope">
+          <div class="quiz-q-text">Q1. What makes Prompt B in the hook more effective than Prompt A?</div>
+          <div class="quiz-opts">
+            <label class="quiz-opt"><input type="radio" name="q2-1" value="longer">It's longer, and longer prompts always work better</label>
+            <label class="quiz-opt"><input type="radio" name="q2-1" value="scope">It states who's asking, what's needed, in what form, and at what length</label>
+            <label class="quiz-opt"><input type="radio" name="q2-1" value="polite">It's phrased more politely</label>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <div class="quiz-q" data-answer="draft">
+          <div class="quiz-q-text">Q2. You get a response that's roughly right but too general. What's the best next move?</div>
+          <div class="quiz-opts">
+            <label class="quiz-opt"><input type="radio" name="q2-2" value="accept">Accept it — it's close enough to work with</label>
+            <label class="quiz-opt"><input type="radio" name="q2-2" value="draft">Treat it as a draft and follow up with a specific redirection</label>
+            <label class="quiz-opt"><input type="radio" name="q2-2" value="restart">Start over in a fresh conversation with the same prompt</label>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <button class="btn" data-check-quiz>Check answers</button>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">6</span>Practise</div>
+      <div class="card">
+        <p style="margin:0 0 12px;font-size:14.5px;color:var(--text-muted);">Write a well-scoped prompt for a real task in your own subject. Use the four-step process above — this is just the Scope step, but do it properly.</p>
+        <textarea class="reflect-textarea" placeholder="Who you are · what you need · in what form · how long..."></textarea>
+        <ul class="criteria">
+          <li>Does it say who's asking and for what purpose?</li>
+          <li>Does it specify the output format and length?</li>
+          <li>Would someone else get a useful result from this prompt?</li>
+        </ul>
+      </div>
+      <div class="assignment-banner">
+        <div class="assignment-icon">✓</div>
+        <div>
+          <strong>Your lecturer has linked an assignment to this lesson</strong>
+          <p>PSY 201 — Use an AI tool to support one authentic task in this course. Submit both your process (prompts, iterations, verification) and the final output. Due 7 Sep.</p>
+        </div>
+      </div>
+      <div class="no-assignment">No assignment currently linked to this lesson by your lecturer.</div>
+    </div>
+  </section>
+
+  <!-- ============ LESSON 3.3 ============ -->
+  <section class="lesson" id="lesson-3-3">
+    <div class="lesson-head">
+      <span class="lesson-tag">Create</span>
+      <h2 class="lesson-title">3.3 — Creating AI Tools</h2>
+      <p class="lesson-outcome"><b>By the end of this lesson:</b> you can design, test and refine a reusable prompt template for a task you do regularly.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">1</span>Hook</div>
+      <div class="card">
+        <p class="hook-scenario">There's probably a task you do every single week — the same shape, over and over.</p>
+        <p class="hook-prompt">Name one before you continue. That's what you'll build for.</p>
+        <textarea class="hook-input" placeholder="The recurring task I'd like to make easier is..."></textarea>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">2</span>Core idea</div>
+      <div class="card core-text">
+        <p>Everything so far has been about <em>using</em> AI. This lesson is about designing <em>how</em> you use it — building a reusable template so you're not starting from a blank prompt every time.</p>
+        <p>A good template is just a prompt with the variable parts marked out, plus the steps that make it reliable. Once it works, you reuse it indefinitely.</p>
+        <div class="pull">The shift is small but real: from asking a tool for help to designing the process you'll use every time.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">3</span>Worked example — a reusable template</div>
+      <div class="kv">
+        <div class="kv-row">
+          <div class="kv-key">Purpose</div>
+          <div class="kv-val">Turn a weekly assigned reading into revision notes I'll actually use.</div>
+        </div>
+        <div class="kv-row">
+          <div class="kv-key">Template</div>
+          <div class="kv-val">"I'm a <code>[year]</code> <code>[subject]</code> student. From the text below, produce: (1) the central argument in 3 sentences, (2) the key evidence, (3) two questions the author leaves unanswered. Flag anything you're uncertain about rather than guessing."</div>
+        </div>
+        <div class="kv-row">
+          <div class="kv-key">Verify step</div>
+          <div class="kv-val">Check the central argument against the text's own conclusion. If they don't match, the summary has drifted — re-run with a narrower excerpt.</div>
+        </div>
+        <div class="kv-row">
+          <div class="kv-key">What I changed</div>
+          <div class="kv-val">v1 gave flat summaries. Adding "two questions the author leaves unanswered" turned it into something that helps me think rather than just recall. Adding the uncertainty flag cut invented detail noticeably.</div>
+        </div>
+      </div>
+      <div class="card core-text" style="margin-top:16px;">
+        <p><b style="color:var(--text)">Notice the last row.</b> The template only became good through revision — v1 didn't work. That record of what changed and why is as much a part of the tool as the prompt itself, and it's what you'll be asked to document.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">4</span>Enrichment</div>
+      <div class="card">
+        <div class="enrich">
+          <div class="portrait-ph">
+            <div class="initials">SM</div>
+            PORTRAIT<br>PLACEHOLDER
+          </div>
+          <div>
+            <p class="enrich-name">S. E. K. Mqhayi</p>
+            <span class="enrich-dates">1875 – 1945 · Poet, novelist, translator</span>
+            <div class="enrich-body">
+              <p>Mqhayi is often called the father of Xhosa poetry. What made his work distinctive wasn't only talent — it was method. He took the traditional Xhosa praise poem, a form with deep roots and established conventions, and deliberately adapted it to new subjects and new circumstances, without losing what made the form work in the first place.</p>
+              <p>That's a good model for this lesson. Designing a reusable template isn't inventing from a blank page — it's taking a process you already understand, studying its structure the way Mqhayi studied the praise poem, and shaping a repeatable version that still does the real work. His craft was patient and iterative, refined over decades. Yours is smaller in scale, but the principle holds: build on what you understand, test it, refine it, and don't mistake a first draft for a finished tool.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">5</span>Check your design</div>
+      <div class="card">
+        <p style="margin:0 0 4px;font-size:14.5px;color:var(--text);font-weight:500;">Before you build: does your planned template meet the basic criteria?</p>
+        <ul class="selfcheck">
+          <li><input type="checkbox"><span>It has a clear, single purpose I could state in one sentence.</span></li>
+          <li><input type="checkbox"><span>It's genuinely repeatable — I'd use it more than once.</span></li>
+          <li><input type="checkbox"><span>The variable parts are marked out, so I'm not rewriting it each time.</span></li>
+          <li><input type="checkbox"><span>It includes a verification step, not just a generation step.</span></li>
+          <li><input type="checkbox"><span>I've tested it at least twice and changed something after the first run.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">6</span>Create — your template and process log</div>
+      <div class="card">
+        <p style="margin:0 0 12px;font-size:14.5px;color:var(--text-muted);">Design and test a reusable prompt template for the task you named at the start. Document what you tried, what didn't work, and your final version.</p>
+        <textarea class="reflect-textarea" style="min-height:170px;" placeholder="Purpose:&#10;&#10;Template (v1):&#10;&#10;What happened when I tested it:&#10;&#10;What I changed and why:&#10;&#10;Final version:&#10;&#10;Verify step:"></textarea>
+        <ul class="criteria">
+          <li>Is my template built for a real task I actually do?</li>
+          <li>Did I record what changed between versions, not just the final result?</li>
+          <li>Does it include a step for checking the output, not just producing it?</li>
+        </ul>
+      </div>
+      <div class="assignment-banner">
+        <div class="assignment-icon">✓</div>
+        <div>
+          <strong>Your lecturer has linked an assignment to this lesson</strong>
+          <p>PSY 201 — Submit your designed template plus a short process log showing what you tried, what failed, and what you changed. Due 14 Sep.</p>
+        </div>
+      </div>
+      <div class="no-assignment">No assignment currently linked to this lesson by your lecturer.</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Module 3 of 4 — AI Techniques and Applications</p>
+    <div class="pager">
+      <a href="module-2.html">← Module 2 · Ethics of AI</a>
+      <a href="index.html">All modules</a>
+      <a class="next" href="module-4.html">Module 4 · System Design (elective) →</a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="assets/js/course.js"></script>
+
+</body>
+</html>

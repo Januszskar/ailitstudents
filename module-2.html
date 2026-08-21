@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 2 · Ethics of AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/course.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">AI Literacy · Student Course</a>
+    <div class="module-pills">
+      <a class="pill " href="module-0.html">0</a>
+      <a class="pill " href="module-1.html">1</a>
+      <span class="pill active ">2 · Ethics</span>
+      <a class="pill " href="module-3.html">3</a>
+      <a class="pill elective" href="module-4.html">4</a>
+    </div>
+    <div class="demo-toggle">
+      Lecturer assignment preview
+      <button class="switch" id="demoSwitch" aria-pressed="false" aria-label="Preview lecturer-linked assignments"></button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Module 2 of 4 · Core</div>
+    <h1 class="title">Ethics of AI</h1>
+    <p class="lede">Module 1 asked whose thinking is doing the work. This module asks what can go wrong when it isn't yours — and what you're expected to do about it. It covers the real risks in AI tools, how to be transparent about using them, and how to judge whether a tool is fair in the first place.</p>
+    <div class="meta-row">
+      <span><span class="dot"></span>3 lessons</span>
+      <span><span class="dot"></span>~45 minutes total</span>
+      <span><span class="dot"></span>Self-paced</span>
+      <span><span class="dot"></span>Not credit-bearing</span>
+    </div>
+
+    <div class="path">
+      <div class="path-node reached">
+        <div class="path-dot"></div>
+        <div class="path-level">Understand</div>
+        <div class="path-label">2.1 Embodied Ethics</div>
+      </div>
+      <div class="path-line filled"></div>
+      <div class="path-node current">
+        <div class="path-dot"></div>
+        <div class="path-level">Apply</div>
+        <div class="path-label">2.2 Safe &amp; Responsible Use</div>
+      </div>
+      <div class="path-line"></div>
+      <div class="path-node">
+        <div class="path-dot"></div>
+        <div class="path-level">Create</div>
+        <div class="path-label">2.3 Ethics by Design</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<nav class="lesson-nav" id="lessonNav">
+  <a href="#lesson-2-1" data-target="lesson-2-1" class="active">2.1 Ethics</a>
+  <a href="#lesson-2-2" data-target="lesson-2-2">2.2 Responsible Use</a>
+  <a href="#lesson-2-3" data-target="lesson-2-3">2.3 By Design</a>
+</nav>
+
+<div class="wrap">
+
+  <!-- ============ LESSON 2.1 ============ -->
+  <section class="lesson" id="lesson-2-1">
+    <div class="lesson-head">
+      <span class="lesson-tag">Understand</span>
+      <h2 class="lesson-title">2.1 — Embodied Ethics</h2>
+      <p class="lesson-outcome"><b>By the end of this lesson:</b> you can recognise and correctly name the main ethical risks in AI systems — rather than just sensing that something feels off.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">1</span>Hook</div>
+      <div class="card">
+        <p class="hook-scenario">An AI study tool consistently gives weaker, vaguer feedback to students who write in a second language or a non-dominant dialect — and better feedback to everyone else.</p>
+        <p class="hook-prompt">Something's clearly wrong here. But what exactly? Try to name it before you read on.</p>
+        <textarea class="hook-input" placeholder="Name the problem in your own words — this isn't graded."></textarea>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">2</span>Core idea</div>
+      <div class="card core-text">
+        <p>Being able to say "this feels wrong" is a start. Being able to say <em>exactly what kind of wrong</em> is what lets you do something about it — raise it, avoid it, or design around it.</p>
+        <div class="pull">Most AI harm isn't caused by anyone deciding to cause harm. It's built in quietly, through data, defaults, and assumptions nobody questioned.</div>
+        <p>Here are the risks worth knowing by name. Tap any one to expand it.</p>
+      </div>
+
+      <div class="risk-grid" style="margin-top:14px;">
+        <div class="risk" tabindex="0" role="button">
+          <h4>Bias <span class="chev">›</span></h4>
+          <p>The system works better for some groups than others, usually because its training data over-represented those groups.</p>
+        </div>
+        <div class="risk" tabindex="0" role="button">
+          <h4>Hallucination <span class="chev">›</span></h4>
+          <p>The tool states something false with complete confidence — invented facts, fake sources, made-up statistics.</p>
+        </div>
+        <div class="risk" tabindex="0" role="button">
+          <h4>Privacy <span class="chev">›</span></h4>
+          <p>Information you enter may be stored, reused, or exposed in ways you didn't intend and can't easily undo.</p>
+        </div>
+        <div class="risk" tabindex="0" role="button">
+          <h4>Unequal access <span class="chev">›</span></h4>
+          <p>The best tools cost money, data, or reliable connectivity — so they widen the gap between students who have those and students who don't.</p>
+        </div>
+        <div class="risk" tabindex="0" role="button">
+          <h4>Exclusion <span class="chev">›</span></h4>
+          <p>The system simply doesn't work for some people — wrong language, wrong accent, wrong assumptions about who the user is.</p>
+        </div>
+        <div class="risk" tabindex="0" role="button">
+          <h4>Surveillance <span class="chev">›</span></h4>
+          <p>Tools that monitor behaviour can shift from supporting people to watching them, often without clear consent.</p>
+        </div>
+        <div class="risk" tabindex="0" role="button">
+          <h4>Over-reliance <span class="chev">›</span></h4>
+          <p>Skills you stop practising, you stop having. Convenience now can cost you capability later.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">3</span>Worked example</div>
+      <div class="card core-text">
+        <p><b style="color:var(--text)">Back to the hook.</b> The correct name for that problem is <b style="color:var(--text)">bias</b> — and it's worth being precise about why. The tool wasn't designed to disadvantage second-language writers. It was trained mostly on text written by fluent speakers of a dominant dialect, so it recognises that writing as "good" and struggles to read anything else generously.</p>
+        <p>Notice what naming it precisely gets you: "this tool is biased against non-dominant dialects because of its training data" is something you can raise with a lecturer, check for in other tools, or account for in how you use it. "This tool feels unfair" isn't.</p>
+      </div>
+      <div class="placeholder" style="margin-top:14px;">
+        <div class="ph-icon">▶</div>
+        VIDEO PLACEHOLDER — 2-minute explainer
+        <div class="ph-note">Short animated walkthrough of how training data becomes built-in bias — to be produced by media team.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">4</span>Enrichment</div>
+      <div class="card">
+        <div class="enrich">
+          <div class="portrait-ph">
+            <div class="initials">FF</div>
+            PORTRAIT<br>PLACEHOLDER
+          </div>
+          <div>
+            <p class="enrich-name">Frantz Fanon</p>
+            <span class="enrich-dates">1925 – 1961 · Psychiatrist and philosopher</span>
+            <div class="enrich-body">
+              <p>Fanon's work is built around one uncomfortable question: how do systems quietly produce harm for some people while looking perfectly neutral to everyone else? He spent his career showing that exclusion is rarely announced outright — it's built into structures, defaults, and "the way things are done." That's exactly what makes it hard to see and easy to deny.</p>
+              <p>That's the shape of the risks in this lesson. Bias in an AI system usually isn't one bad actor making a deliberate choice — it's baked into training data and design assumptions about what "normal" looks like. Fanon's method is a direct model for how to interrogate a tool: refuse to accept that a system is neutral just because it claims to be, and ask instead <em>who does this actually work for, and who does it quietly fail?</em></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">5</span>Check your understanding</div>
+      <div class="card">
+        <p style="margin:0 0 14px;font-size:14.5px;color:var(--text);font-weight:500;">Q1. Match each scenario to the risk it best describes.</p>
+        <div id="matchSet">
+          <div class="match-row" data-answer="hallucination">
+            <div class="match-scenario">An AI tool cites a journal article that doesn't exist.</div>
+            <select class="match-select">
+              <option value="">Select a risk...</option>
+              <option value="bias">Bias</option>
+              <option value="hallucination">Hallucination</option>
+              <option value="access">Unequal access</option>
+              <option value="reliance">Over-reliance</option>
+            </select>
+          </div>
+          <div class="match-row" data-answer="access">
+            <div class="match-scenario">The most capable version of a tool is behind a paywall most students can't afford.</div>
+            <select class="match-select">
+              <option value="">Select a risk...</option>
+              <option value="bias">Bias</option>
+              <option value="hallucination">Hallucination</option>
+              <option value="access">Unequal access</option>
+              <option value="reliance">Over-reliance</option>
+            </select>
+          </div>
+          <div class="match-row" data-answer="reliance">
+            <div class="match-scenario">A student realises they can no longer summarise a reading without AI help.</div>
+            <select class="match-select">
+              <option value="">Select a risk...</option>
+              <option value="bias">Bias</option>
+              <option value="hallucination">Hallucination</option>
+              <option value="access">Unequal access</option>
+              <option value="reliance">Over-reliance</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn" style="margin-top:16px;" data-check-match>Check answers</button>
+        <div class="quiz-feedback" id="matchFeedback"></div>
+
+        <div class="quiz-q" data-answer="access" style="margin-top:28px;">
+          <div class="quiz-q-text">Q2. Which risk is most directly about who gets to use AI tools at all?</div>
+          <div class="quiz-opts">
+            <label class="quiz-opt"><input type="radio" name="q1-2" value="hallucination">Hallucination</label>
+            <label class="quiz-opt"><input type="radio" name="q1-2" value="access">Unequal access</label>
+            <label class="quiz-opt"><input type="radio" name="q1-2" value="surveillance">Surveillance</label>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <button class="btn" data-check-quiz>Check answer</button>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">6</span>Reflect</div>
+      <div class="card">
+        <p style="margin:0 0 12px;font-size:14.5px;color:var(--text-muted);">Which of these risks feels most relevant to your own field of study — and why that one?</p>
+        <textarea class="reflect-textarea" placeholder="Write a few sentences — this is for you, not graded."></textarea>
+        <ul class="criteria">
+          <li>Did I name a specific risk rather than a general worry?</li>
+          <li>Did I connect it to something real in my discipline?</li>
+        </ul>
+      </div>
+
+      <div class="assignment-banner">
+        <div class="assignment-icon">✓</div>
+        <div>
+          <strong>Your lecturer has linked an assignment to this lesson</strong>
+          <p>PSY 201 — Identify and briefly explain one ethical risk relevant to an AI tool commonly used in your discipline. Due 10 Aug.</p>
+        </div>
+      </div>
+      <div class="no-assignment">No assignment currently linked to this lesson by your lecturer.</div>
+    </div>
+  </section>
+
+  <!-- ============ LESSON 2.2 ============ -->
+  <section class="lesson" id="lesson-2-2">
+    <div class="lesson-head">
+      <span class="lesson-tag">Apply</span>
+      <h2 class="lesson-title">2.2 — Safe and Responsible Use</h2>
+      <p class="lesson-outcome"><b>By the end of this lesson:</b> you can disclose AI use correctly in your own coursework, and verify AI output before you rely on it.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">1</span>Hook</div>
+      <div class="card">
+        <p class="hook-scenario">A student's essay includes a full reference list, correct formatting, and no mention anywhere that AI was used to draft two of its sections.</p>
+        <p class="hook-prompt">Nothing in it is technically false. So what's the problem?</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">2</span>Core idea</div>
+      <div class="card core-text">
+        <p>Two habits make AI use responsible rather than risky. Neither is complicated — both are easy to skip.</p>
+        <p><b style="color:var(--text)">Verify.</b> Check anything an AI tool tells you before you rely on it, especially facts, figures, quotes, and sources. Fluent writing is not evidence of accuracy.</p>
+        <p><b style="color:var(--text)">Disclose.</b> Say what role the tool played. Not as an apology or a confession — as basic information your reader needs to judge the work fairly.</p>
+        <div class="pull">Disclosure isn't an admission that you did something wrong. It's what makes it possible for someone to trust what you're handing them.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">3</span>Worked example</div>
+      <div class="card">
+        <div class="disclosure-box">
+          <span class="dtag">A disclosure statement that works</span>
+          <em>"I used an AI assistant to generate an initial outline for sections 2 and 3, and to suggest alternative phrasings in the discussion. All sources were located and verified by me. Two statistics initially suggested by the tool were removed after I could not verify them."</em>
+          <div class="annot">↑ Names what the tool did · names what the student did · records what was corrected</div>
+        </div>
+      </div>
+      <div class="compare" style="margin-top:16px;">
+        <div class="compare-card bad">
+          <span class="compare-tag">Too vague to be useful</span>
+          <p>"AI was used in the preparation of this assignment."<br><br>Used how? For what? Verified by whom? A reader learns nothing they can act on.</p>
+        </div>
+        <div class="compare-card good">
+          <span class="compare-tag">Specific and checkable</span>
+          <p>"AI was used to generate an initial outline for section 2. All sources verified independently; two unverifiable claims removed."<br><br>A reader knows exactly what to trust and why.</p>
+        </div>
+      </div>
+      <div class="placeholder" style="margin-top:16px;">
+        <div class="ph-icon">▤</div>
+        DISCIPLINE EXAMPLES PLACEHOLDER
+        <div class="ph-note">Faculty-specific disclosure examples (lab report, legal memo, clinical case note, studio project) — to be gathered from participating faculties.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">4</span>Enrichment</div>
+      <div class="card">
+        <div class="enrich">
+          <div class="portrait-ph">
+            <div class="initials">TS</div>
+            PORTRAIT<br>PLACEHOLDER
+          </div>
+          <div>
+            <p class="enrich-name">Tiyo Soga</p>
+            <span class="enrich-dates">1829 – 1871 · Minister, translator, writer</span>
+            <div class="enrich-body">
+              <p>Soga was the first Black South African ordained as a minister in an established church, and a translator who spent years rendering major works into isiXhosa. Translation demanded painstaking honesty: he was always aware that a careless or convenient rendering could quietly distort what he was trying to carry across.</p>
+              <p>That's the same discipline this lesson asks of you. Responsible AI use means doing the equivalent of Soga's careful translation work — not accepting the first fluent-sounding version, checking it against what you actually know to be true, and being transparent about where the work came from. He stood behind the accuracy of what he produced, publicly, for readers who depended on it. A disclosure statement does the same job.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">5</span>Check your understanding</div>
+      <div class="card">
+        <div class="quiz-q" data-answer="no">
+          <div class="quiz-q-text">Q1. Is this disclosure adequate? <em style="color:var(--text-faint);font-style:italic;">"Some AI assistance was used."</em></div>
+          <div class="quiz-opts">
+            <label class="quiz-opt"><input type="radio" name="q2-1" value="yes">Yes — it mentions AI, which is what matters</label>
+            <label class="quiz-opt"><input type="radio" name="q2-1" value="no">No — it doesn't say what the tool did or what was verified</label>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <div class="quiz-q" data-answer="verify">
+          <div class="quiz-q-text">Q2. An AI tool gives you a precise-sounding statistic for your essay. What comes next?</div>
+          <div class="quiz-opts">
+            <label class="quiz-opt"><input type="radio" name="q2-2" value="use">Use it — the specificity suggests it's accurate</label>
+            <label class="quiz-opt"><input type="radio" name="q2-2" value="verify">Find the original source and verify it before using it</label>
+            <label class="quiz-opt"><input type="radio" name="q2-2" value="ask">Ask the AI whether it's sure</label>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <button class="btn" data-check-quiz>Check answers</button>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">6</span>Practise</div>
+      <div class="card">
+        <p style="margin:0 0 12px;font-size:14.5px;color:var(--text-muted);">Draft a disclosure statement for a piece of AI-assisted work you've done recently — real or hypothetical. Use the worked example above as your model.</p>
+        <textarea class="reflect-textarea" placeholder="Draft your disclosure statement..."></textarea>
+        <ul class="criteria">
+          <li>Does it say specifically what the tool did?</li>
+          <li>Does it say what I verified myself?</li>
+          <li>Would a reader know what to trust after reading it?</li>
+        </ul>
+      </div>
+      <div class="assignment-banner">
+        <div class="assignment-icon">✓</div>
+        <div>
+          <strong>Your lecturer has linked an assignment to this lesson</strong>
+          <p>PSY 201 — Submit your next piece of coursework with a correctly formatted AI-use disclosure statement attached.</p>
+        </div>
+      </div>
+      <div class="no-assignment">No assignment currently linked to this lesson by your lecturer.</div>
+    </div>
+  </section>
+
+  <!-- ============ LESSON 2.3 ============ -->
+  <section class="lesson" id="lesson-2-3">
+    <div class="lesson-head">
+      <span class="lesson-tag">Create</span>
+      <h2 class="lesson-title">2.3 — Ethics by Design</h2>
+      <p class="lesson-outcome"><b>By the end of this lesson:</b> you can critique an AI tool against fairness, transparency and inclusion criteria — and propose a specific improvement.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">1</span>Hook</div>
+      <div class="card">
+        <p class="hook-scenario">You've been asked to redesign an AI study tool so it works fairly for every student on your campus — not the average student, every student.</p>
+        <p class="hook-prompt">What's the first thing you'd change?</p>
+        <textarea class="hook-input" placeholder="One change — be specific."></textarea>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">2</span>Core idea</div>
+      <div class="card core-text">
+        <p>"Ethics by design" means building fairness in from the start rather than patching harm after it happens. It's a shift in <em>when</em> you ask the question, and it changes what answers are even available.</p>
+        <div class="pull">Nothing about how a tool currently works is inevitable. Someone chose it — which means someone can choose differently.</div>
+        <p>Four questions do most of the work:</p>
+        <ol class="framework" style="margin-top:16px;">
+          <li><div><strong>Who benefits?</strong><span>Who was this built for, and who does it serve best right now?</span></div></li>
+          <li><div><strong>Who's excluded?</strong><span>Who can't use it, can't afford it, or gets worse results from it?</span></div></li>
+          <li><div><strong>What's baked in?</strong><span>What assumptions about users, language, or "normal" are built into the data and defaults?</span></div></li>
+          <li><div><strong>Is it explainable?</strong><span>Can anyone tell why it produced a given result — or is it a black box?</span></div></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">3</span>Worked example</div>
+      <div class="placeholder">
+        <div class="ph-icon">▤</div>
+        WORKED CRITIQUE PLACEHOLDER
+        <div class="ph-note">Full walkthrough of the four questions applied to one widely-used AI tool — to be drafted once a current, appropriate tool is selected for the pilot.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">4</span>Enrichment</div>
+      <div class="card">
+        <div class="enrich">
+          <div class="portrait-ph">
+            <div class="initials">AM</div>
+            PORTRAIT<br>PLACEHOLDER
+          </div>
+          <div>
+            <p class="enrich-name">Achille Mbembe</p>
+            <span class="enrich-dates">b. 1957 · Philosopher and historian</span>
+            <div class="enrich-body">
+              <p>Mbembe's work examines how power and exclusion get built into institutions — and, just as importantly, how those institutions could be built differently. Rather than stopping at critique, his writing pushes toward the harder question: what would it actually take to design something that doesn't reproduce the same exclusions?</p>
+              <p>That's the shift this lesson asks you to make. Ethics by design isn't about patching problems after a tool has caused harm. Mbembe's habit of treating institutions — universities, states, technologies — as things that were <em>designed</em> by particular people with particular assumptions, and can therefore be <em>redesigned</em>, is the same move as the four questions above.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">5</span>Check your understanding</div>
+      <div class="card">
+        <div class="quiz-q" data-answer="before">
+          <div class="quiz-q-text">Q1. What most distinguishes "ethics by design" from ordinary ethical review?</div>
+          <div class="quiz-opts">
+            <label class="quiz-opt"><input type="radio" name="q3-1" value="before">Fairness is considered before and during design, not after harm appears</label>
+            <label class="quiz-opt"><input type="radio" name="q3-1" value="stricter">It applies stricter penalties when something goes wrong</label>
+            <label class="quiz-opt"><input type="radio" name="q3-1" value="legal">It's a legal requirement rather than a design choice</label>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <div class="quiz-q" data-answer="excluded">
+          <div class="quiz-q-text">Q2. A tool works well for most students but poorly for those using screen readers. Which question surfaces this fastest?</div>
+          <div class="quiz-opts">
+            <label class="quiz-opt"><input type="radio" name="q3-2" value="benefits">Who benefits?</label>
+            <label class="quiz-opt"><input type="radio" name="q3-2" value="excluded">Who's excluded?</label>
+            <label class="quiz-opt"><input type="radio" name="q3-2" value="explainable">Is it explainable?</label>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <button class="btn" data-check-quiz>Check answers</button>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">6</span>Create — your tool critique</div>
+      <div class="card">
+        <p style="margin:0 0 12px;font-size:14.5px;color:var(--text-muted);">Pick one AI tool you actually use. Work through the four questions, then propose one specific change that would make it fairer or more inclusive.</p>
+        <textarea class="reflect-textarea" style="min-height:150px;" placeholder="Tool:&#10;&#10;Who benefits?&#10;Who's excluded?&#10;What's baked in?&#10;Is it explainable?&#10;&#10;One change I'd make:"></textarea>
+        <ul class="criteria">
+          <li>Did I critique a real tool I've actually used, not a hypothetical one?</li>
+          <li>Is my proposed change specific enough that someone could act on it?</li>
+          <li>Does my critique go beyond describing the tool to evaluating it?</li>
+        </ul>
+      </div>
+      <div class="assignment-banner">
+        <div class="assignment-icon">✓</div>
+        <div>
+          <strong>Your lecturer has linked an assignment to this lesson</strong>
+          <p>PSY 201 — Submit a short written critique of one AI tool used in your discipline, including one proposed improvement. Due 24 Aug.</p>
+        </div>
+      </div>
+      <div class="no-assignment">No assignment currently linked to this lesson by your lecturer.</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Module 2 of 4 — Ethics of AI</p>
+    <div class="pager">
+      <a href="module-1.html">← Module 1 · Human-Centred Mindset</a>
+      <a href="index.html">All modules</a>
+      <a class="next" href="module-3.html">Module 3 · Techniques →</a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="assets/js/course.js"></script>
+
+</body>
+</html>

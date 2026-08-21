@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 4 · AI System Design (Elective)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/course.css">
+</head>
+<body class="theme-elective">
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">AI Literacy · Student Course</a>
+    <div class="module-pills">
+      <a class="pill " href="module-0.html">0</a>
+      <a class="pill " href="module-1.html">1</a>
+      <a class="pill " href="module-2.html">2</a>
+      <a class="pill " href="module-3.html">3</a>
+      <span class="pill active elective">4 · System Design</span>
+    </div>
+    <div class="demo-toggle">
+      Lecturer assignment preview
+      <button class="switch" id="demoSwitch" aria-pressed="false" aria-label="Preview lecturer-linked assignments"></button>
+    </div>
+  </div>
+</div>
+
+<div class="elective-bar">
+  <b>Elective module.</b> Not required to complete the course — choose this if you want to go further, or if your lecturer has recommended it.
+</div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Module 4 of 4 · Elective · Advanced</div>
+    <h1 class="title">AI System Design</h1>
+    <p class="lede">Modules 1–3 were about using AI well. This one is about thinking like someone who builds it — scoping a problem properly, sketching how a system would address it, and designing the loop that tells you whether it actually works. No coding required.</p>
+    <div class="prereq">
+      <b>Before you start:</b> this module assumes you've completed Modules 1–3. It builds directly on the verification habits from Module 3 and the fairness questions from Module 2 — both of which reappear here as design decisions rather than usage habits.
+    </div>
+    <div class="meta-row">
+      <span><span class="dot"></span>3 lessons</span>
+      <span><span class="dot"></span>~55 minutes total</span>
+      <span><span class="dot"></span>Self-paced</span>
+      <span><span class="dot"></span>Not credit-bearing</span>
+    </div>
+
+    <div class="path">
+      <div class="path-node reached">
+        <div class="path-dot"></div>
+        <div class="path-level">Understand</div>
+        <div class="path-label">4.1 Problem Scoping</div>
+      </div>
+      <div class="path-line filled"></div>
+      <div class="path-node current">
+        <div class="path-dot"></div>
+        <div class="path-level">Apply</div>
+        <div class="path-label">4.2 Architecture Design</div>
+      </div>
+      <div class="path-line"></div>
+      <div class="path-node">
+        <div class="path-dot"></div>
+        <div class="path-level">Create</div>
+        <div class="path-label">4.3 Iteration &amp; Feedback</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<nav class="lesson-nav" id="lessonNav">
+  <a href="#lesson-4-1" data-target="lesson-4-1" class="active">4.1 Scoping</a>
+  <a href="#lesson-4-2" data-target="lesson-4-2">4.2 Architecture</a>
+  <a href="#lesson-4-3" data-target="lesson-4-3">4.3 Iteration</a>
+</nav>
+
+<div class="wrap">
+
+  <!-- ============ LESSON 4.1 ============ -->
+  <section class="lesson" id="lesson-4-1">
+    <div class="lesson-head">
+      <span class="lesson-tag">Understand</span>
+      <h2 class="lesson-title">4.1 — Problem Scoping</h2>
+      <p class="lesson-outcome"><b>By the end of this lesson:</b> you can frame a real problem in terms an AI system could plausibly help solve — and recognise when one couldn't.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">1</span>Hook</div>
+      <div class="card">
+        <p class="hook-scenario">"We should use AI to improve student wellbeing."</p>
+        <p class="hook-prompt">It sounds reasonable. It's also unbuildable as written. What's missing?</p>
+        <textarea class="hook-input" placeholder="What would you need to know before anyone could start?"></textarea>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">2</span>Core idea</div>
+      <div class="card core-text">
+        <p>Most failed AI projects don't fail at the building stage. They fail at the scoping stage, because nobody insisted on a precise answer to a basic question: <em>what exactly is the task, and how would we know if it worked?</em></p>
+        <div class="pull">A problem an AI system can help with is specific, has a definable input and output, and comes with an agreed way to tell success from failure.</div>
+        <p>Three tests will catch most of the bad ones:</p>
+        <p><b style="color:var(--text)">Is it specific?</b> "Improve wellbeing" is a goal, not a task. "Flag students who haven't accessed course materials in 14 days" is a task.</p>
+        <p><b style="color:var(--text)">Is there a clear input and output?</b> You should be able to say what goes in and what comes out, concretely.</p>
+        <p><b style="color:var(--text)">Can you measure success?</b> If nobody can say what "working" looks like in advance, you can't tell a functioning system from a broken one.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">3</span>Worked example — sort the problems</div>
+      <p class="sorter-intro">// Which of these are scoped well enough to build? Decide before you check.</p>
+      <div class="sorter" id="sorter">
+
+        <div class="sortable" data-answer="no">
+          <div class="sortable-text">"Use AI to make our department more innovative."</div>
+          <div class="sort-btns">
+            <button class="sort-btn" data-choice="yes">Buildable</button>
+            <button class="sort-btn" data-choice="no">Not yet</button>
+          </div>
+          <div class="sort-note"><b>Not yet.</b> No task, no input, no output, no measure. "Innovative" can't be defined precisely enough for anyone to know whether the system succeeded. This is a direction, not a problem statement.</div>
+        </div>
+
+        <div class="sortable" data-answer="yes">
+          <div class="sortable-text">"Given a student's submitted essay, generate three specific questions a marker is likely to ask, so the student can self-review before submitting."</div>
+          <div class="sort-btns">
+            <button class="sort-btn" data-choice="yes">Buildable</button>
+            <button class="sort-btn" data-choice="no">Not yet</button>
+          </div>
+          <div class="sort-note"><b>Buildable.</b> Clear input (an essay), clear output (three questions), clear purpose, and a testable measure — do markers actually ask those questions? You could evaluate this against real marking feedback.</div>
+        </div>
+
+        <div class="sortable" data-answer="no">
+          <div class="sortable-text">"Predict which students will drop out, so we can intervene early."</div>
+          <div class="sort-btns">
+            <button class="sort-btn" data-choice="yes">Buildable</button>
+            <button class="sort-btn" data-choice="no">Not yet</button>
+          </div>
+          <div class="sort-note"><b>Not yet — and this one is worth pausing on.</b> It <em>is</em> technically specific, with a definable input and output. But scoping isn't only a technical question. Who sees the prediction? What happens to a student wrongly flagged? Which existing inequalities would the training data encode as "risk"? A problem can be technically well-formed and still badly scoped until those are answered.</div>
+        </div>
+
+        <div class="sortable" data-answer="yes">
+          <div class="sortable-text">"Given a set of lecture slides, produce a glossary of technical terms with plain-language definitions."</div>
+          <div class="sort-btns">
+            <button class="sort-btn" data-choice="yes">Buildable</button>
+            <button class="sort-btn" data-choice="no">Not yet</button>
+          </div>
+          <div class="sort-note"><b>Buildable.</b> Narrow, bounded, low-stakes, and easy to evaluate — a lecturer can check the glossary in minutes. Small scope like this is a feature, not a limitation: it's why the system can actually be tested.</div>
+        </div>
+
+      </div>
+      <div class="card core-text" style="margin-top:16px;">
+        <p><b style="color:var(--text)">The third one is the important one.</b> Scoping isn't only about whether a problem is technically tractable. A system can be perfectly buildable and still be the wrong thing to build. That question — <em>should this exist in this form?</em> — belongs at the scoping stage, not after launch.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">4</span>Enrichment</div>
+      <div class="placeholder open-slot">
+        <div class="ph-icon">◇</div>
+        ENRICHMENT SLOT — NOT YET ASSIGNED
+        <div class="ph-note">The eight confirmed enrichment segments cover Modules 1–3, which were built first. Module 4's three slots are open. For this lesson — asking the right question before rushing to answer it — the standing suggestion is Ptahhotep, whose maxims centre careful listening and precise counsel before action. Not yet confirmed.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">5</span>Check your understanding</div>
+      <div class="card">
+        <div class="quiz-q" data-answer="measure">
+          <div class="quiz-q-text">Q1. A proposal is specific and has clear inputs and outputs, but nobody can say what "working" would look like. What's missing?</div>
+          <div class="quiz-opts">
+            <label class="quiz-opt"><input type="radio" name="q1-1" value="data">More training data</label>
+            <label class="quiz-opt"><input type="radio" name="q1-1" value="measure">A definition of success you could measure against</label>
+            <label class="quiz-opt"><input type="radio" name="q1-1" value="budget">A bigger budget</label>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <div class="quiz-q" data-answer="scoping">
+          <div class="quiz-q-text">Q2. When should "who might this harm?" be asked?</div>
+          <div class="quiz-opts">
+            <label class="quiz-opt"><input type="radio" name="q1-2" value="scoping">At scoping, before anything is designed</label>
+            <label class="quiz-opt"><input type="radio" name="q1-2" value="testing">During testing, once there's something to evaluate</label>
+            <label class="quiz-opt"><input type="radio" name="q1-2" value="launch">After launch, if problems are reported</label>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <button class="btn" data-check-quiz>Check answers</button>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">6</span>Practise</div>
+      <div class="card">
+        <p style="margin:0 0 12px;font-size:14.5px;color:var(--text-muted);">Take a real, small problem from your own studies or student life. Write it as a scoped problem statement using the three tests above.</p>
+        <textarea class="reflect-textarea" style="min-height:130px;" placeholder="The problem:&#10;&#10;Input:&#10;Output:&#10;How I'd know it worked:&#10;Who this could affect badly:"></textarea>
+        <ul class="criteria">
+          <li>Is it a task, not a goal or a direction?</li>
+          <li>Could someone else read this and know what to build?</li>
+          <li>Did I answer the harm question honestly, not as a formality?</li>
+        </ul>
+      </div>
+      <div class="assignment-banner">
+        <div class="assignment-icon">✓</div>
+        <div>
+          <strong>Your lecturer has linked an assignment to this lesson</strong>
+          <p>CSC 314 — Submit a scoped problem statement for an AI system relevant to your discipline, including the success measure and one identified risk. Due 21 Sep.</p>
+        </div>
+      </div>
+      <div class="no-assignment">No assignment currently linked to this lesson by your lecturer.</div>
+    </div>
+  </section>
+
+  <!-- ============ LESSON 4.2 ============ -->
+  <section class="lesson" id="lesson-4-2">
+    <div class="lesson-head">
+      <span class="lesson-tag">Apply</span>
+      <h2 class="lesson-title">4.2 — Architecture Design</h2>
+      <p class="lesson-outcome"><b>By the end of this lesson:</b> you can outline, at a conceptual level, how an AI system would be structured to address a scoped problem.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">1</span>Hook</div>
+      <div class="card">
+        <p class="hook-scenario">Two teams build a tool to flag likely errors in student lab reports. One puts the flags straight into the student's grade. The other shows them to the student before submission and never records them.</p>
+        <p class="hook-prompt">Same model, same accuracy. Completely different system. Where does the difference actually live?</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">2</span>Core idea</div>
+      <div class="card core-text">
+        <p>"Architecture" sounds technical, but at this level it just means: <em>what are the parts, what flows between them, and where do humans sit?</em> You can sketch this on paper. Most of the consequential decisions are made here, not in the model itself.</p>
+        <div class="pull">The model is one component. The architecture is everything around it — and that's usually where the harm or the value comes from.</div>
+        <p>Click each layer below to see what you'd have to decide.</p>
+      </div>
+
+      <div class="arch" style="margin-top:16px;">
+        <div class="arch-layer" tabindex="0" role="button">
+          <div class="arch-head">
+            <span class="arch-idx">01</span>
+            <span class="arch-name">Input</span>
+            <span class="arch-sub">what goes in</span>
+          </div>
+          <div class="arch-body">
+            <ul>
+              <li>What data does the system need, and who does it come from?</li>
+              <li>Was it collected for this purpose, or repurposed from somewhere else?</li>
+              <li>Whose data is over- or under-represented in it?</li>
+              <li>What's the minimum you could collect and still solve the problem?</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="arch-layer" tabindex="0" role="button">
+          <div class="arch-head">
+            <span class="arch-idx">02</span>
+            <span class="arch-name">Processing</span>
+            <span class="arch-sub">what the model does</span>
+          </div>
+          <div class="arch-body">
+            <ul>
+              <li>What is the model actually being asked to produce — a classification, a ranking, a piece of text?</li>
+              <li>Does it need to explain its output, or is a bare answer acceptable?</li>
+              <li>What should it do when it's uncertain? (Guessing silently is a design choice.)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="arch-layer" tabindex="0" role="button">
+          <div class="arch-head">
+            <span class="arch-idx">03</span>
+            <span class="arch-name">Human review</span>
+            <span class="arch-sub">where judgement enters</span>
+          </div>
+          <div class="arch-body">
+            <ul>
+              <li>Does a person see the output before it has any effect — or after?</li>
+              <li>Can that person override it, and is overriding easy or discouraged?</li>
+              <li>Do they have enough context to review it meaningfully, or are they rubber-stamping?</li>
+              <li>This is the layer the hook scenario turns on. Same model, different placement of this box.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="arch-layer" tabindex="0" role="button">
+          <div class="arch-head">
+            <span class="arch-idx">04</span>
+            <span class="arch-name">Output &amp; action</span>
+            <span class="arch-sub">what happens as a result</span>
+          </div>
+          <div class="arch-body">
+            <ul>
+              <li>Who sees the result, and in what form?</li>
+              <li>What decision does it feed into, and how reversible is that decision?</li>
+              <li>Is the person affected told that a system was involved?</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="arch-loop">↺ &nbsp;output feeds back into input — see Lesson 4.3</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">3</span>Worked example</div>
+      <div class="card core-text">
+        <p><b style="color:var(--text)">Back to the hook.</b> Both teams built the same model. The difference is entirely in layers 03 and 04.</p>
+        <p><b style="color:var(--text)">Team A:</b> output flows directly into a grade. Human review sits <em>after</em> the consequence, if at all. A false flag costs the student marks before anyone looks at it.</p>
+        <p><b style="color:var(--text)">Team B:</b> output goes only to the student, before submission, with nothing recorded. Human review is the student themselves, and they can ignore it freely. A false flag costs nothing.</p>
+        <p>Same accuracy, radically different risk profile — decided by two boxes on a diagram, not by the model.</p>
+      </div>
+      <div class="placeholder" style="margin-top:14px;">
+        <div class="ph-icon">▤</div>
+        DIAGRAM PLACEHOLDER
+        <div class="ph-note">Side-by-side architecture diagrams of Team A vs Team B, showing where the human-review box sits in each. To be produced by media/design team.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">4</span>Enrichment</div>
+      <div class="placeholder open-slot">
+        <div class="ph-icon">◇</div>
+        ENRICHMENT SLOT — NOT YET ASSIGNED
+        <div class="ph-note">Open. For this lesson — how the structure around a thing determines its effects — a candidate would need to speak to systems and institutional design rather than individual conduct. Suggestion pending your input.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">5</span>Check your understanding</div>
+      <div class="card">
+        <div class="quiz-q" data-answer="review">
+          <div class="quiz-q-text">Q1. In the hook scenario, which layer accounts for the difference between the two systems?</div>
+          <div class="quiz-opts">
+            <label class="quiz-opt"><input type="radio" name="q2-1" value="input">Input — they used different data</label>
+            <label class="quiz-opt"><input type="radio" name="q2-1" value="processing">Processing — one model was more accurate</label>
+            <label class="quiz-opt"><input type="radio" name="q2-1" value="review">Human review and output — where the result goes and who can override it</label>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <div class="quiz-q" data-answer="flag">
+          <div class="quiz-q-text">Q2. A system is often uncertain. What's the better design default?</div>
+          <div class="quiz-opts">
+            <label class="quiz-opt"><input type="radio" name="q2-2" value="guess">Produce its best guess without comment — users prefer a clear answer</label>
+            <label class="quiz-opt"><input type="radio" name="q2-2" value="flag">Signal the uncertainty, so a human knows when to look closer</label>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <button class="btn" data-check-quiz>Check answers</button>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">6</span>Practise</div>
+      <div class="card">
+        <p style="margin:0 0 12px;font-size:14.5px;color:var(--text-muted);">Take the problem you scoped in 4.1. Sketch its four layers — in words or a rough diagram. Pay particular attention to where human review sits and what it can actually change.</p>
+        <textarea class="reflect-textarea" style="min-height:150px;" placeholder="01 Input —&#10;02 Processing —&#10;03 Human review —&#10;04 Output & action —&#10;&#10;What changes if I move the human review box?"></textarea>
+        <ul class="criteria">
+          <li>Have I said specifically where a person enters the process?</li>
+          <li>Can that person actually change the outcome, or only observe it?</li>
+          <li>Did I say what the system does when it's uncertain?</li>
+        </ul>
+      </div>
+      <div class="assignment-banner">
+        <div class="assignment-icon">✓</div>
+        <div>
+          <strong>Your lecturer has linked an assignment to this lesson</strong>
+          <p>CSC 314 — Submit a four-layer architecture outline for your scoped problem, with a short note on where human oversight sits and why. Due 28 Sep.</p>
+        </div>
+      </div>
+      <div class="no-assignment">No assignment currently linked to this lesson by your lecturer.</div>
+    </div>
+  </section>
+
+  <!-- ============ LESSON 4.3 ============ -->
+  <section class="lesson" id="lesson-4-3">
+    <div class="lesson-head">
+      <span class="lesson-tag">Create</span>
+      <h2 class="lesson-title">4.3 — Iteration and Feedback Loops</h2>
+      <p class="lesson-outcome"><b>By the end of this lesson:</b> you can design a testing and refinement cycle for an AI-supported solution — including how you'd find out it was failing.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">1</span>Hook</div>
+      <div class="card">
+        <p class="hook-scenario">A system has been running for eight months. Everyone assumes it's working. Nobody has checked, because nothing has gone visibly wrong.</p>
+        <p class="hook-prompt">Is "no complaints" evidence that it's working?</p>
+        <textarea class="hook-input" placeholder="Why, or why not?"></textarea>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">2</span>Core idea</div>
+      <div class="card core-text">
+        <p>Silence isn't evidence. The people a system fails are often the least able to complain about it — and the least likely to be asked.</p>
+        <p>A feedback loop is the part of the design that tells you the truth about how the system is actually performing, whether or not anyone speaks up. Without one, you're not running a system; you're hoping.</p>
+        <div class="pull">Design the way you'll find out it's failing at the same time you design the thing itself. Afterwards is too late — you'll only measure what's convenient.</div>
+        <div class="cycle" style="margin-top:18px;">
+          <div class="cyc">
+            <span class="cnum">Phase 01</span>
+            <strong>Build</strong>
+            <span>Smallest version that could possibly work.</span>
+          </div>
+          <div class="cyc">
+            <span class="cnum">Phase 02</span>
+            <strong>Test</strong>
+            <span>Against cases you chose in advance, including hard ones.</span>
+          </div>
+          <div class="cyc">
+            <span class="cnum">Phase 03</span>
+            <strong>Observe</strong>
+            <span>Watch real use — especially who stops using it.</span>
+          </div>
+          <div class="cyc">
+            <span class="cnum">Phase 04</span>
+            <strong>Adjust</strong>
+            <span>Change something specific. Record what and why.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">3</span>Worked example — a test plan</div>
+      <div class="kv">
+        <div class="kv-row">
+          <div class="kv-key">System</div>
+          <div class="kv-val">Glossary generator: turns lecture slides into plain-language definitions of technical terms.</div>
+        </div>
+        <div class="kv-row">
+          <div class="kv-key">Success measure</div>
+          <div class="kv-val">A lecturer reviewing 20 generated definitions accepts at least 16 without correction.</div>
+        </div>
+        <div class="kv-row">
+          <div class="kv-key">Test cases</div>
+          <div class="kv-val">10 straightforward terms · 5 terms with discipline-specific meanings that differ from everyday use · 5 terms that appear nowhere in the slides (does it invent a definition, or say it can't find one?)</div>
+        </div>
+        <div class="kv-row">
+          <div class="kv-key">Failure signals</div>
+          <div class="kv-val">Definitions that are fluent but subtly wrong · confident definitions for terms not in the source · consistently worse output for one subject area than others.</div>
+        </div>
+        <div class="kv-row">
+          <div class="kv-key">Who I'd ask</div>
+          <div class="kv-val">Not just students who kept using it — specifically students who tried it twice and stopped. They know something the enthusiastic users don't.</div>
+        </div>
+        <div class="kv-row">
+          <div class="kv-key">Review point</div>
+          <div class="kv-val">Re-run the full test set every term, since course content and terminology change.</div>
+        </div>
+      </div>
+      <div class="card core-text" style="margin-top:16px;">
+        <p><b style="color:var(--text)">Note the third row.</b> The five terms that appear nowhere in the slides are the most valuable test in the set — they check whether the system admits uncertainty or fabricates confidently. That's the Module 3 hallucination problem, now handled as a design decision rather than a user's problem to catch.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">4</span>Enrichment</div>
+      <div class="placeholder open-slot">
+        <div class="ph-icon">◇</div>
+        ENRICHMENT SLOT — NOT YET ASSIGNED
+        <div class="ph-note">Open. This lesson is about patient revision and testing your own work honestly. Mqhayi already carries the iteration theme in Lesson 3.3, so re-using him here would dilute both — a different figure is worth finding. Suggestion pending.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">5</span>Check your design</div>
+      <div class="card">
+        <p style="margin:0 0 4px;font-size:14.5px;color:var(--text);font-weight:500;">Before you write your plan — does it stand up?</p>
+        <ul class="selfcheck">
+          <li><input type="checkbox"><span>I defined success <em>before</em> testing, not after seeing the results.</span></li>
+          <li><input type="checkbox"><span>My test cases include ones I expect it to fail.</span></li>
+          <li><input type="checkbox"><span>I've said what a failure would look like, specifically.</span></li>
+          <li><input type="checkbox"><span>I've planned to hear from people who stopped using it, not only those who stayed.</span></li>
+          <li><input type="checkbox"><span>There's a scheduled review point, not just "we'll check if problems come up."</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label"><span class="num">6</span>Create — your test and iteration plan</div>
+      <div class="card">
+        <p style="margin:0 0 12px;font-size:14.5px;color:var(--text-muted);">Write a test and iteration plan for the system you scoped in 4.1 and structured in 4.2. Use the worked example as your model.</p>
+        <textarea class="reflect-textarea" style="min-height:180px;" placeholder="System:&#10;Success measure:&#10;Test cases (include ones you expect to fail):&#10;Failure signals:&#10;Who I'd ask:&#10;Review point:"></textarea>
+        <ul class="criteria">
+          <li>Would this plan actually catch a failure, or only confirm success?</li>
+          <li>Have I included test cases designed to break it?</li>
+          <li>Is there a real review schedule, not a vague intention?</li>
+        </ul>
+      </div>
+      <div class="assignment-banner">
+        <div class="assignment-icon">✓</div>
+        <div>
+          <strong>Your lecturer has linked an assignment to this lesson</strong>
+          <p>CSC 314 — Submit your full design package: scoped problem (4.1), architecture outline (4.2), and test/iteration plan (4.3). Due 12 Oct.</p>
+        </div>
+      </div>
+      <div class="no-assignment">No assignment currently linked to this lesson by your lecturer.</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Module 4 of 4 — AI System Design · Elective</p>
+    <div class="pager">
+      <a href="module-3.html">← Module 3 · Techniques</a>
+      <a href="index.html">All modules</a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="assets/js/course.js"></script>
+
+</body>
+</html>
